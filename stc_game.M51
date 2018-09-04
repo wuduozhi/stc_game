@@ -1,0 +1,277 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        09/04/2018  16:29:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+H:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, stc_game.obj TO stc_game
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  stc_game.obj (STC_GAME)
+  H:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  H:\KEIL\C51\LIB\C51S.LIB (?C?SIDIV)
+  H:\KEIL\C51\LIB\C51S.LIB (RAND)
+  H:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  stc_game (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0020H     UNIT         ?DT?STC_GAME
+            DATA    0028H     0004H     UNIT         ?DT?RAND?RAND
+            IDATA   002CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     000DH                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    00AAH     008BH     UNIT         ?C?LIB_CODE
+            CODE    0135H     0075H     UNIT         ?PR?GAMESCREEN?STC_GAME
+            CODE    01AAH     004DH     UNIT         ?PR?RAND?RAND
+            CODE    01F7H     004BH     UNIT         ?PR?TIM2?STC_GAME
+            CODE    0242H     0043H     UNIT         ?PR?TIMER0?STC_GAME
+            CODE    0285H     0033H     UNIT         ?C_INITSEG
+            CODE    02B8H     0019H     UNIT         ?PR?INIT_SYS?STC_GAME
+            CODE    02D1H     0014H     UNIT         ?PR?INIT?STC_GAME
+            CODE    02E5H     000EH     UNIT         ?PR?MAIN?STC_GAME
+
+
+
+OVERLAY MAP OF MODULE:   stc_game (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?STC_GAME
+  +--> ?C_INITSEG
+
+?PR?MAIN?STC_GAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  16:29:47  PAGE 2
+
+
+  +--> ?PR?INIT_SYS?STC_GAME
+  +--> ?PR?INIT?STC_GAME
+  +--> ?PR?GAMESCREEN?STC_GAME
+
+?PR?GAMESCREEN?STC_GAME
+  +--> ?PR?RAND?RAND
+
+*** NEW ROOT ***************************************************
+
+?PR?TIMER0?STC_GAME
+  +--> ?PR?GAMESCREEN?STC_GAME
+
+*** NEW ROOT ***************************************************
+
+?PR?TIM2?STC_GAME
+  +--> ?PR?GAMESCREEN?STC_GAME
+
+
+
+SYMBOL TABLE OF MODULE:  stc_game (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:001EH         SEGMENT       ?C_C51STARTUP
+  I:002CH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0021H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:001EH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:001EH         LINE#         133
+  C:0020H         LINE#         134
+  C:0021H         LINE#         135
+  C:0022H         LINE#         136
+  C:0024H         LINE#         185
+  C:0027H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  16:29:47  PAGE 3
+
+
+
+  -------         MODULE        STC_GAME
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0093H         PUBLIC        P0M1
+  D:0096H         PUBLIC        P2M0
+  D:0080H         PUBLIC        P0
+  C:0135H         PUBLIC        gameScreen
+  D:00B2H         PUBLIC        P3M0
+  D:0095H         PUBLIC        P2M1
+  D:0090H         PUBLIC        P1
+  D:00B4H         PUBLIC        P4M0
+  D:00B1H         PUBLIC        P3M1
+  D:00A0H         PUBLIC        P2
+  D:00CAH         PUBLIC        P5M0
+  D:00B3H         PUBLIC        P4M1
+  D:00B0H         PUBLIC        P3
+  D:00C9H         PUBLIC        P5M1
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+  D:0008H         PUBLIC        weixuan
+  D:0010H         PUBLIC        show_b
+  B:00A8H.7       PUBLIC        EA
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  D:0018H         PUBLIC        show_f
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0020H         PUBLIC        flag
+  D:00D8H         PUBLIC        CCON
+  C:02E5H         PUBLIC        main
+  D:0021H         PUBLIC        count
+  D:0023H         PUBLIC        shift_time
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:02D1H         PUBLIC        init
+  D:0025H         PUBLIC        next
+  B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  D:0026H         PUBLIC        tmp
+  C:0242H         PUBLIC        timer0
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  D:0027H         PUBLIC        i
+  C:02B8H         PUBLIC        init_sys
+  D:00D0H         PUBLIC        PSW
+  C:01F7H         PUBLIC        tim2
+  D:0094H         PUBLIC        P0M0
+  -------         PROC          INIT_SYS
+  C:02B8H         LINE#         10
+  C:02B8H         LINE#         11
+  C:02B8H         LINE#         12
+  C:02BBH         LINE#         13
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  16:29:47  PAGE 4
+
+
+  C:02BEH         LINE#         14
+  C:02C1H         LINE#         15
+  C:02C3H         LINE#         16
+  C:02C6H         LINE#         17
+  C:02C8H         LINE#         18
+  C:02CAH         LINE#         19
+  C:02CCH         LINE#         20
+  C:02CEH         LINE#         21
+  C:02D0H         LINE#         22
+  -------         ENDPROC       INIT_SYS
+  -------         PROC          INIT
+  C:02D1H         LINE#         23
+  C:02D1H         LINE#         24
+  C:02D1H         LINE#         25
+  C:02D4H         LINE#         26
+  C:02D7H         LINE#         27
+  C:02DAH         LINE#         28
+  C:02DCH         LINE#         29
+  C:02DEH         LINE#         30
+  C:02E0H         LINE#         31
+  C:02E2H         LINE#         32
+  C:02E4H         LINE#         33
+  -------         ENDPROC       INIT
+  -------         PROC          MAIN
+  C:02E5H         LINE#         48
+  C:02E5H         LINE#         49
+  C:02E5H         LINE#         50
+  C:02E8H         LINE#         51
+  C:02EBH         LINE#         52
+  C:02EEH         LINE#         53
+  C:02F1H         LINE#         54
+  -------         ENDPROC       MAIN
+  -------         PROC          GAMESCREEN
+  C:0135H         LINE#         57
+  C:0135H         LINE#         58
+  C:0138H         LINE#         59
+  C:013BH         LINE#         60
+  C:0143H         LINE#         61
+  C:014BH         LINE#         62
+  C:0157H         LINE#         63
+  C:015AH         LINE#         64
+  C:0168H         LINE#         65
+  C:0176H         LINE#         66
+  C:0179H         LINE#         67
+  C:0185H         LINE#         68
+  C:0191H         LINE#         69
+  C:0196H         LINE#         70
+  C:019BH         LINE#         71
+  C:019EH         LINE#         72
+  C:019EH         LINE#         73
+  C:01A1H         LINE#         74
+  C:01A4H         LINE#         75
+  C:01A9H         LINE#         76
+  C:01A9H         LINE#         77
+  -------         ENDPROC       GAMESCREEN
+  -------         PROC          TIMER0
+  C:0242H         LINE#         79
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  16:29:47  PAGE 5
+
+
+  C:025FH         LINE#         80
+  C:0262H         LINE#         81
+  C:0265H         LINE#         82
+  C:0268H         LINE#         83
+  C:026AH         LINE#         84
+  -------         ENDPROC       TIMER0
+  -------         PROC          TIM2
+  C:01F7H         LINE#         86
+  C:0214H         LINE#         88
+  C:0217H         LINE#         89
+  C:021AH         LINE#         92
+  C:021DH         LINE#         93
+  C:021FH         LINE#         94
+  C:0227H         LINE#         95
+  -------         ENDPROC       TIM2
+  -------         ENDMOD        STC_GAME
+
+  -------         MODULE        ?C?SIDIV
+  C:00AAH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        RAND
+  D:0028H         PUBLIC        ?SRAND?BYTE
+  C:01AAH         PUBLIC        RAND
+  C:01ECH         PUBLIC        _SRAND
+  -------         ENDMOD        RAND
+
+  -------         MODULE        ?C?UIDIV
+  C:00E0H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=45.0 xdata=0 code=734
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

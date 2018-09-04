@@ -1,0 +1,255 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\大二-下\2018夏季学期\4_STC-B案例（学生版）\55_My\stc_game\stc_game.uvproj
+Project File Date:  09/04/2018
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(45): warning C206: 'playmusic': missing function-prototype
+stc_game.c(50): error C202: 'weixuan': undefined identifier
+stc_game.c(51): error C202: 'show_f': undefined identifier
+stc_game.c(53): error C141: syntax error near 'int'
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C141: syntax error near ')'
+stc_game.c(55): error C202: 'i': undefined identifier
+stc_game.c(57): error C141: syntax error near 'int'
+stc_game.c(57): error C202: 'tmp': undefined identifier
+stc_game.c(58): error C141: syntax error near 'int'
+stc_game.c(58): error C202: 'next': undefined identifier
+stc_game.c(59): error C202: 'tmp': undefined identifier
+stc_game.c(60): error C202: 'next': undefined identifier
+stc_game.c(61): error C202: 'next': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(64): error C202: 'show_b': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(45): warning C206: 'playmusic': missing function-prototype
+stc_game.c(50): error C202: 'weixuan': undefined identifier
+stc_game.c(51): error C202: 'show_f': undefined identifier
+stc_game.c(53): error C141: syntax error near 'unsigned'
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C141: syntax error near ')'
+stc_game.c(55): error C202: 'i': undefined identifier
+stc_game.c(57): error C141: syntax error near 'unsigned'
+stc_game.c(57): error C202: 'tmp': undefined identifier
+stc_game.c(58): error C141: syntax error near 'unsigned'
+stc_game.c(58): error C202: 'next': undefined identifier
+stc_game.c(59): error C202: 'tmp': undefined identifier
+stc_game.c(60): error C202: 'next': undefined identifier
+stc_game.c(61): error C202: 'next': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(64): error C202: 'show_b': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(45): warning C206: 'playmusic': missing function-prototype
+stc_game.c(50): error C202: 'weixuan': undefined identifier
+stc_game.c(51): error C202: 'show_f': undefined identifier
+stc_game.c(53): error C141: syntax error near 'unsigned'
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C202: 'i': undefined identifier
+stc_game.c(53): error C141: syntax error near ')'
+stc_game.c(55): error C202: 'i': undefined identifier
+stc_game.c(57): error C141: syntax error near 'unsigned'
+stc_game.c(57): error C202: 'tmp': undefined identifier
+stc_game.c(58): error C141: syntax error near 'unsigned'
+stc_game.c(58): error C202: 'next': undefined identifier
+stc_game.c(59): error C202: 'tmp': undefined identifier
+stc_game.c(60): error C202: 'next': undefined identifier
+stc_game.c(61): error C202: 'next': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(64): error C202: 'show_b': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(45): warning C206: 'playmusic': missing function-prototype
+stc_game.c(50): error C202: 'weixuan': undefined identifier
+stc_game.c(51): error C202: 'show_f': undefined identifier
+stc_game.c(52): error C141: syntax error near 'unsigned'
+stc_game.c(52): error C202: 'i': undefined identifier
+stc_game.c(53): error C141: syntax error near 'unsigned'
+stc_game.c(53): error C202: 'tmp': undefined identifier
+stc_game.c(54): error C141: syntax error near 'unsigned'
+stc_game.c(54): error C202: 'next': undefined identifier
+stc_game.c(56): error C202: 'i': undefined identifier
+stc_game.c(57): error C202: 'i': undefined identifier
+stc_game.c(58): error C202: 'i': undefined identifier
+stc_game.c(60): error C202: 'tmp': undefined identifier
+stc_game.c(61): error C202: 'tmp': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(63): error C202: 'next': undefined identifier
+stc_game.c(64): error C202: 'next': undefined identifier
+stc_game.c(66): error C202: 'show_b': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(49): error C202: 'weixuan': undefined identifier
+stc_game.c(50): error C202: 'show_f': undefined identifier
+stc_game.c(51): error C141: syntax error near 'unsigned'
+stc_game.c(51): error C202: 'i': undefined identifier
+stc_game.c(52): error C141: syntax error near 'unsigned'
+stc_game.c(52): error C202: 'tmp': undefined identifier
+stc_game.c(53): error C141: syntax error near 'unsigned'
+stc_game.c(53): error C202: 'next': undefined identifier
+stc_game.c(55): error C202: 'i': undefined identifier
+stc_game.c(56): error C202: 'i': undefined identifier
+stc_game.c(57): error C202: 'i': undefined identifier
+stc_game.c(59): error C202: 'tmp': undefined identifier
+stc_game.c(60): error C202: 'tmp': undefined identifier
+stc_game.c(61): error C202: 'next': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(63): error C202: 'next': undefined identifier
+stc_game.c(65): error C202: 'show_b': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+stc_game.c(52): error C141: syntax error near 'unsigned'
+stc_game.c(52): error C202: 'i': undefined identifier
+stc_game.c(53): error C141: syntax error near 'unsigned'
+stc_game.c(53): error C202: 'tmp': undefined identifier
+stc_game.c(54): error C141: syntax error near 'unsigned'
+stc_game.c(54): error C202: 'next': undefined identifier
+stc_game.c(56): error C202: 'i': undefined identifier
+stc_game.c(57): error C202: 'i': undefined identifier
+stc_game.c(58): error C202: 'i': undefined identifier
+stc_game.c(60): error C202: 'tmp': undefined identifier
+stc_game.c(61): error C202: 'tmp': undefined identifier
+stc_game.c(62): error C202: 'next': undefined identifier
+stc_game.c(63): error C202: 'next': undefined identifier
+stc_game.c(64): error C202: 'next': undefined identifier
+stc_game.c(66): error C202: 'next': undefined identifier
+compiling varias.c...
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+compiling varias.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SHOW_LED
+    MODULE:  varias.obj (VARIAS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SHOW_F
+    MODULE:  varias.obj (VARIAS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SHOW_B
+    MODULE:  varias.obj (VARIAS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  WEIXUAN
+    MODULE:  varias.obj (VARIAS)
+Program Size: data=67.0 xdata=0 code=666
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+compiling varias.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SHOW_F
+    MODULE:  varias.obj (VARIAS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SHOW_B
+    MODULE:  varias.obj (VARIAS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  WEIXUAN
+    MODULE:  varias.obj (VARIAS)
+Program Size: data=66.0 xdata=0 code=663
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=630
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=630
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=631
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=701
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=704
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=707
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=713
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=713
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=713
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=41.0 xdata=0 code=707
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=45.0 xdata=0 code=734
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).

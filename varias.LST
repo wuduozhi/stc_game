@@ -1,0 +1,49 @@
+C51 COMPILER V9.51   VARIAS                                                                09/04/2018 16:08:05 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE VARIAS
+OBJECT MODULE PLACED IN varias.OBJ
+COMPILER INVOKED BY: H:\Keil\C51\BIN\C51.EXE varias.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #define uint unsigned int
+   2          #define uchar unsigned char
+   3          
+   4          uchar show_b[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //barrier 8-bit segments show
+   5          uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //final 8-bit show
+   6          uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};  
+   7          uchar show_led = 0x0f;
+   8          /*
+   9          uint gameState = 0;   // 0 going, 1 win, 2 lose
+  10          uchar show_lose[]= {0x38,0x3f,0x6d,0x79,0x00,0x00,0x00,0x00};
+  11          uchar show_vic[] = {0x3e,0x06,0x39,0x00,0x00,0x00,0x00,0x00};
+  12          
+  13          
+  14          uint led = 0x1f;
+  15          uint count=0, elidith=0;  //分频计数和消抖
+  16          uint x,i=0,k=0;
+  17          uint level = 1;
+  18          uint delaytime = 530;   //initial digital tube shift time
+  19          uint mudltime = 1000, n=0;
+  20          uint divpo = 0,point = 0;
+  21          uint divcontrol = 0;
+  22          
+  23          uchar next = 0x00; 
+  24          */
+  25          /*Queue can't work for music time is the main line, the digital display line can only be delayed but not p
+             -ut forward*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     25    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
