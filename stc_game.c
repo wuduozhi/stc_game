@@ -31,17 +31,26 @@ void init()
 	ET1=1;
 	TR1=1;
 }
+sbit KEY1 = P3^2;
+sbit KEY2 = P3^3;
+sbit KEY3 = P1^7;
+sbit led_sel=P2^3;
+
+uint hit = 0;  //击中与否
+uint no_hit = 0;
+uchar led = 0x3f;  //初始六条命
+uchar gameState = 0; //游戏状态
 uchar flag = 0;  //数码管选择
 uchar i = 0;
 uchar tmp = 0;
-uchar next = 0;
-uint count = 0;
-uint shift_time = 530;
+uchar next = 0;  
+uint count = 0;         //数码管移动计数
+uint shift_time = 530;  //数码管移动时间
 uchar show_b[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  	//barrier 8-bit segments show
 uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  	//final 8-bit show
 uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};	
 void gameScreen();
-
+void gameOver();
 /**********************
 void main() main function
 ***********************/
@@ -55,25 +64,79 @@ void main()
 }
 
 void gameScreen(){
-	P0 = 0;
-	flag = flag%8;
-	P2 = weixuan[flag];
-	P0 = show_f[flag];
-	if(count == shift_time){
-		for(i=7;i>0;i--){
-			show_b[i] = show_b[i-1];
-			show_f[i] = show_b[i];
-		}
-		tmp =  rand()%3;
-		switch(tmp){
-			case 0: next = 0x01; break;		//show_b[0] is an original resource used to copy musicode to next location.
-			case 1: next = 0x40; break;
-			case 2: next = 0x08; break;
-		}
-		show_b[0] = next;
-		show_f[0] = show_b[0];
-		count = 0;
+	
+	//判断点击
+	if(gameState == 0){
+		if(KEY3 == 0){ show_b[6] &= 0xfe; }		 //敲击上中下三个位置的音符
+		if(KEY2 == 0){ show_b[6] &= 0xbf; }
+		if(KEY1 == 0){ show_b[6] &= 0xf7; } 
+		
+		show_f[6] |= 0x36;  //敲击提示线
+		
 	}
+	
+	//数码管显示
+	P0 = 0;
+	flag = flag%9;
+	led_sel = 0;
+	if(flag < 8){
+		P2 = weixuan[flag];
+		P0 = show_f[flag];
+	}else{
+		led_sel=1;
+		P0 = led;
+		flag = 0;
+	}
+	
+
+	
+	if(count == shift_time){ //移动
+		switch(gameState){
+			case 0:
+					for(i=7;i>0;i--){
+						show_b[i] = show_b[i-1];
+						show_f[i] = show_b[i];
+					}
+					
+					//生成随机数
+					tmp =  rand()%3;
+					switch(tmp){
+						case 0: next = 0x01; break;		//show_b[0] is an original resource used to copy musicode to next location.
+						case 1: next = 0x40; break;
+						case 2: next = 0x08; break;
+					}
+					show_b[0] = next;
+					show_f[0] = show_b[0];
+					count = 0;
+					
+					//判断是否击中
+					if(show_b[7] != 0x00){
+						led = led>>1;
+						no_hit ++;
+						if(led == 0x00){
+							gameState = 1;
+							gameOver();
+						}
+					}else{
+						hit++;
+					}
+					
+				default:
+					gameOver();
+		}
+	}
+}
+
+void gameOver(){
+	show_f[0] = 0x76;
+	show_f[1] = hit/100;
+	show_f[2] = (hit%100)/10;
+	show_f[3] = hit%10;
+	show_f[4] = 0x37;
+	show_f[5] = no_hit/100;
+	show_f[6] = (no_hit%100)/10;
+	show_f[7] = no_hit%10;
+
 }
 
 void timer0() interrupt 1{
@@ -87,8 +150,6 @@ void tim2() interrupt 3
 {
 	TH1=(65536-925)/256;
 	TL1=(65536-925)%256;
-
-	
 	gameScreen();
 	flag++;
 	count++;
