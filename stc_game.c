@@ -137,7 +137,7 @@ void gameScreen(){
 }
 
 void gameOver(){
-	hit = hit%1000;
+	hit = hit%1000-7;  //减去移动前多算的七次
 	no_hit = no_hit%1000;
 	show_f[0] = 0x76;
 	show_f[1] = seg7encorder(hit/100);
