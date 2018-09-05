@@ -1,4 +1,4 @@
-C51 COMPILER V9.51   STC_GAME                                                              09/04/2018 17:30:48 PAGE 1   
+C51 COMPILER V9.51   STC_GAME                                                              09/05/2018 09:05:42 PAGE 1   
 
 
 C51 COMPILER V9.51, COMPILATION OF MODULE STC_GAME
@@ -47,135 +47,165 @@ line level    source
   38          
   39          uint hit = 0;  //击中与否
   40          uint no_hit = 0;
-  41          uchar led = 0x3f;  //初始六条命
-  42          uchar gameState = 0; //游戏状态
-  43          uchar flag = 0;  //数码管选择
-  44          uchar i = 0;
-  45          uchar tmp = 0;
-  46          uchar next = 0;  
-  47          uint count = 0;         //数码管移动计数
-  48          uint shift_time = 530;  //数码管移动时间
-  49          uchar show_b[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //barrier 8-bit segments show
-  50          uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //final 8-bit show
-  51          uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};  
-  52          void gameScreen();
-  53          void gameOver();
-  54          /**********************
-  55          void main() main function
-C51 COMPILER V9.51   STC_GAME                                                              09/04/2018 17:30:48 PAGE 2   
+  41          uint no_hit_t = 0;
+  42          uchar led = 0x3f;  //初始六条命
+  43          uchar gameState = 0; //游戏状态
+  44          uchar flag = 0;  //数码管选择
+  45          uchar i = 0;
+  46          uchar tmp = 0;
+  47          uchar next = 0;  
+  48          uint count = 0;         //数码管移动计数
+  49          uint shift_time = 530;  //数码管移动时间
+  50          uchar show_b[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //barrier 8-bit segments show
+  51          uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};   //final 8-bit show
+  52          uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};  
+  53          void gameScreen();
+  54          void gameOver();
+  55          uchar seg7encorder(uint num);
+C51 COMPILER V9.51   STC_GAME                                                              09/05/2018 09:05:42 PAGE 2   
 
-  56          ***********************/
-  57          void main()
-  58          {
-  59   1        init_sys();
-  60   1        init();
-  61   1        P0=0x00;
-  62   1        gameScreen();
-  63   1        while(1);
-  64   1      }
-  65          
-  66          void gameScreen(){
-  67   1        
-  68   1        //判断点击
-  69   1        if(gameState == 0){
-  70   2          if(KEY3 == 0){ show_b[6] &= 0xfe; }    //敲击上中下三个位置的音符
-  71   2          if(KEY2 == 0){ show_b[6] &= 0xbf; }
-  72   2          if(KEY1 == 0){ show_b[6] &= 0xf7; } 
-  73   2          
-  74   2          show_f[6] |= 0x36;  //敲击提示线
+  56          /**********************
+  57          void main() main function
+  58          ***********************/
+  59          void main()
+  60          {
+  61   1        init_sys();
+  62   1        init();
+  63   1        P0=0x00;
+  64   1        gameScreen();
+  65   1        while(1);
+  66   1      }
+  67          
+  68          void gameScreen(){
+  69   1        
+  70   1        //判断点击
+  71   1        if(gameState == 0){
+  72   2          if(KEY3 == 0){ show_b[6] &= 0xfe; }    //敲击上中下三个位置的音符
+  73   2          if(KEY2 == 0){ show_b[6] &= 0xbf; }
+  74   2          if(KEY1 == 0){ show_b[6] &= 0xf7; } 
   75   2          
-  76   2        }
-  77   1        
-  78   1        //数码管显示
-  79   1        P0 = 0;
-  80   1        flag = flag%9;
-  81   1        led_sel = 0;
-  82   1        if(flag < 8){
-  83   2          P2 = weixuan[flag];
-  84   2          P0 = show_f[flag];
-  85   2        }else{
-  86   2          led_sel=1;
-  87   2          P0 = led;
-  88   2          flag = 0;
-  89   2        }
-  90   1        
-  91   1      
+  76   2          show_f[6] |= 0x36;  //敲击提示线
+  77   2          
+  78   2        }
+  79   1        
+  80   1        //数码管显示
+  81   1        P0 = 0;
+  82   1        flag = flag%9;
+  83   1        led_sel = 0;
+  84   1        if(flag < 8){
+  85   2          P2 = weixuan[flag];
+  86   2          P0 = show_f[flag];
+  87   2        }else{
+  88   2          led_sel=1;
+  89   2          P0 = led;
+  90   2          flag = -1;
+  91   2        }
   92   1        
-  93   1        if(count == shift_time){ //移动
-  94   2          switch(gameState){
-  95   3            case 0:
-  96   3                for(i=7;i>0;i--){
-  97   4                  show_b[i] = show_b[i-1];
-  98   4                  show_f[i] = show_b[i];
-  99   4                }
- 100   3                
- 101   3                //生成随机数
- 102   3                tmp =  rand()%3;
- 103   3                switch(tmp){
- 104   4                  case 0: next = 0x01; break;   //show_b[0] is an original resource used to copy musicode to next locat
+  93   1        flag++;
+  94   1        count++;
+  95   1        
+  96   1      
+  97   1        
+  98   1        if(count == shift_time){ //移动
+  99   2          switch(gameState){
+ 100   3            case 0:
+ 101   3                for(i=7;i>0;i--){
+ 102   4                  show_b[i] = show_b[i-1];
+ 103   4                  show_f[i] = show_b[i];
+ 104   4                }
+ 105   3                
+ 106   3                //生成随机数
+ 107   3                tmp =  rand()%3;
+ 108   3                switch(tmp){
+ 109   4                  case 0: next = 0x01; break;   //show_b[0] is an original resource used to copy musicode to next locat
              -ion.
- 105   4                  case 1: next = 0x40; break;
- 106   4                  case 2: next = 0x08; break;
- 107   4                }
- 108   3                show_b[0] = next;
- 109   3                show_f[0] = show_b[0];
- 110   3                count = 0;
- 111   3                
- 112   3                //判断是否击中
- 113   3                if(show_b[7] != 0x00){
- 114   4                  led = led>>1;
- 115   4                  no_hit ++;
- 116   4                  if(led == 0x00){
-C51 COMPILER V9.51   STC_GAME                                                              09/04/2018 17:30:48 PAGE 3   
+ 110   4                  case 1: next = 0x40; break;
+ 111   4                  case 2: next = 0x08; break;
+ 112   4                }
+ 113   3                show_b[0] = next;
+ 114   3                show_f[0] = show_b[0];
+ 115   3                count = 0;
+ 116   3                
+C51 COMPILER V9.51   STC_GAME                                                              09/05/2018 09:05:42 PAGE 3   
 
- 117   5                    gameState = 1;
- 118   5                    gameOver();
- 119   5                  }
- 120   4                }else{
- 121   4                  hit++;
- 122   4                }
- 123   3                
- 124   3              default:
- 125   3                gameOver();
- 126   3          }
- 127   2        }
- 128   1      }
- 129          
- 130          void gameOver(){
- 131   1        show_f[0] = 0x76;
- 132   1        show_f[1] = hit/100;
- 133   1        show_f[2] = (hit%100)/10;
- 134   1        show_f[3] = hit%10;
- 135   1        show_f[4] = 0x37;
- 136   1        show_f[5] = no_hit/100;
- 137   1        show_f[6] = (no_hit%100)/10;
- 138   1        show_f[7] = no_hit%10;
- 139   1      
- 140   1      }
- 141          
- 142          void timer0() interrupt 1{
- 143   1        TH0=(65535-1000)/256;     //重新装载定时器0的初始值，为了下一次定时器溢出准备
- 144   1        TL0=(65535-1000)%256;
- 145   1        gameScreen();
- 146   1        flag++;
- 147   1      }
- 148          
- 149          void tim2() interrupt 3   
- 150          {
- 151   1        TH1=(65536-925)/256;
- 152   1        TL1=(65536-925)%256;
- 153   1        gameScreen();
- 154   1        flag++;
- 155   1        count++;
- 156   1      }
+ 117   3                //判断是否击中
+ 118   3                if(show_b[7] != 0x00){
+ 119   4                    no_hit_t ++;
+ 120   4                    no_hit ++;
+ 121   4                    if(no_hit_t == 20){
+ 122   5                      no_hit_t = 0;
+ 123   5                      led = led>>1;
+ 124   5                      if(led == 0x00){
+ 125   6                        gameState = 1;
+ 126   6                        gameOver();
+ 127   6                      }
+ 128   5                  }
+ 129   4                }else{
+ 130   4                  hit++;
+ 131   4                }
+ 132   3                break;
+ 133   3              default:
+ 134   3                gameOver();
+ 135   3          }
+ 136   2        }
+ 137   1      }
+ 138          
+ 139          void gameOver(){
+ 140   1        hit = hit%1000;
+ 141   1        no_hit = no_hit%1000;
+ 142   1        show_f[0] = 0x76;
+ 143   1        show_f[1] = seg7encorder(hit/100);
+ 144   1        show_f[2] = seg7encorder((hit%100)/10);
+ 145   1        show_f[3] = seg7encorder(hit%10);
+ 146   1        show_f[4] = 0x38;
+ 147   1        show_f[5] = seg7encorder(no_hit/100);
+ 148   1        show_f[6] = seg7encorder((no_hit%100)/10);
+ 149   1        show_f[7] = seg7encorder(no_hit%10);
+ 150   1      }
+ 151          /*
+ 152          void timer0() interrupt 1{
+ 153            TH0=(65535-1000)/256;     //重新装载定时器0的初始值，为了下一次定时器溢出准备
+ 154            TL0=(65535-1000)%256;
+ 155            gameScreen();
+ 156            flag++;
+ 157          }
+ 158          */
+ 159          void tim2() interrupt 3   
+ 160          {
+ 161   1        TH1=(65536-925)/256;
+ 162   1        TL1=(65536-925)%256;
+ 163   1        gameScreen();
+ 164   1      }
+ 165          
+ 166          /***********************
+ 167          FUNCTION:     void seg7encorder()
+ 168          DESCRIPTION:  to translate a number into 7-segment code.
+ 169          ************************/
+ 170          uchar seg7encorder(uint num){
+ 171   1        switch(num){
+ 172   2          case 0: return 0x3f;
+ 173   2          case 1: return 0x06;
+ 174   2          case 2: return 0x5b;
+ 175   2          case 3: return 0x4f;
+ 176   2          case 4: return 0x66;
+ 177   2          case 5: return 0x6d;
+ 178   2          case 6: return 0x7d;
+C51 COMPILER V9.51   STC_GAME                                                              09/05/2018 09:05:42 PAGE 4   
+
+ 179   2          case 7: return 0x07;
+ 180   2          case 8: return 0x7f;
+ 181   2          case 9: return 0x6f;
+ 182   2          default: return 0xff;
+ 183   2        }
+ 184   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    527    ----
+   CODE SIZE        =    592    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     38    ----
+   DATA SIZE        =     40    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

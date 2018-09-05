@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        09/04/2018  17:30:48  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        09/05/2018  09:05:42  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -25,27 +25,25 @@ LINK MAP OF MODULE:  stc_game (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0026H     UNIT         ?DT?STC_GAME
-            DATA    002EH     0004H     UNIT         ?DT?RAND?RAND
-            IDATA   0032H     0001H     UNIT         ?STACK
+            DATA    0008H     0028H     UNIT         ?DT?STC_GAME
+            DATA    0030H     0004H     UNIT         ?DT?RAND?RAND
+            IDATA   0034H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-                    0003H     0008H                  *** GAP ***
-            CODE    000BH     0003H     ABSOLUTE     
-                    000EH     000DH                  *** GAP ***
+            CODE    0003H     0014H     UNIT         ?PR?INIT?STC_GAME
+                    0017H     0004H                  *** GAP ***
             CODE    001BH     0003H     ABSOLUTE     
-            CODE    001EH     00D7H     UNIT         ?PR?GAMESCREEN?STC_GAME
-            CODE    00F5H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0181H     008BH     UNIT         ?C?LIB_CODE
-            CODE    020CH     006FH     UNIT         ?PR?GAMEOVER?STC_GAME
-            CODE    027BH     004DH     UNIT         ?PR?RAND?RAND
-            CODE    02C8H     004BH     UNIT         ?PR?TIM2?STC_GAME
-            CODE    0313H     0043H     UNIT         ?PR?TIMER0?STC_GAME
-            CODE    0356H     0041H     UNIT         ?C_INITSEG
-            CODE    0397H     0019H     UNIT         ?PR?INIT_SYS?STC_GAME
-            CODE    03B0H     0014H     UNIT         ?PR?INIT?STC_GAME
-            CODE    03C4H     000EH     UNIT         ?PR?MAIN?STC_GAME
+            CODE    001EH     00F2H     UNIT         ?PR?GAMESCREEN?STC_GAME
+            CODE    0110H     008CH     UNIT         ?C_C51STARTUP
+            CODE    019CH     008BH     UNIT         ?C?LIB_CODE
+            CODE    0227H     007FH     UNIT         ?PR?GAMEOVER?STC_GAME
+            CODE    02A6H     0063H     UNIT         ?PR?_SEG7ENCORDER?STC_GAME
+            CODE    0309H     004DH     UNIT         ?PR?RAND?RAND
+            CODE    0356H     0045H     UNIT         ?C_INITSEG
+            CODE    039BH     0041H     UNIT         ?PR?TIM2?STC_GAME
+            CODE    03DCH     0019H     UNIT         ?PR?INIT_SYS?STC_GAME
+            CODE    03F5H     000EH     UNIT         ?PR?MAIN?STC_GAME
 
 
 
@@ -59,11 +57,11 @@ SEGMENT
   +--> ?PR?MAIN?STC_GAME
   +--> ?C_INITSEG
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  17:30:48  PAGE 2
-
-
 ?PR?MAIN?STC_GAME
   +--> ?PR?INIT_SYS?STC_GAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/05/2018  09:05:42  PAGE 2
+
+
   +--> ?PR?INIT?STC_GAME
   +--> ?PR?GAMESCREEN?STC_GAME
 
@@ -71,10 +69,8 @@ SEGMENT
   +--> ?PR?RAND?RAND
   +--> ?PR?GAMEOVER?STC_GAME
 
-*** NEW ROOT ***************************************************
-
-?PR?TIMER0?STC_GAME
-  +--> ?PR?GAMESCREEN?STC_GAME
+?PR?GAMEOVER?STC_GAME
+  +--> ?PR?_SEG7ENCORDER?STC_GAME
 
 *** NEW ROOT ***************************************************
 
@@ -89,8 +85,8 @@ SYMBOL TABLE OF MODULE:  stc_game (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:00F5H         SEGMENT       ?C_C51STARTUP
-  I:0032H         SEGMENT       ?STACK
+  C:0110H         SEGMENT       ?C_C51STARTUP
+  I:0034H         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
@@ -99,7 +95,7 @@ SYMBOL TABLE OF MODULE:  stc_game (?C_STARTUP)
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:00F8H         SYMBOL        IDATALOOP
+  C:0113H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -108,24 +104,24 @@ SYMBOL TABLE OF MODULE:  stc_game (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:00F5H         SYMBOL        STARTUP1
+  C:0110H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:00F5H         LINE#         133
-  C:00F7H         LINE#         134
-  C:00F8H         LINE#         135
-  C:00F9H         LINE#         136
-  C:00FBH         LINE#         185
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  17:30:48  PAGE 3
-
-
-  C:00FEH         LINE#         196
+  C:0110H         LINE#         133
+  C:0112H         LINE#         134
+  C:0113H         LINE#         135
+  C:0114H         LINE#         136
+  C:0116H         LINE#         185
+  C:0119H         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        STC_GAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/05/2018  09:05:42  PAGE 3
+
+
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:0093H         PUBLIC        P0M1
   D:0096H         PUBLIC        P2M0
@@ -158,174 +154,194 @@ SYMBOL TABLE OF MODULE:  stc_game (?C_STARTUP)
   B:0090H.7       PUBLIC        KEY3
   D:0023H         PUBLIC        gameState
   D:00D8H         PUBLIC        CCON
-  C:03C4H         PUBLIC        main
+  C:03F5H         PUBLIC        main
   D:0024H         PUBLIC        count
   D:0026H         PUBLIC        shift_time
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
   D:0028H         PUBLIC        led
-  C:03B0H         PUBLIC        init
-  C:020CH         PUBLIC        gameOver
+  C:0003H         PUBLIC        init
+  C:0227H         PUBLIC        gameOver
   D:0029H         PUBLIC        next
   D:002AH         PUBLIC        hit
   B:00A8H.1       PUBLIC        ET0
   B:00A8H.3       PUBLIC        ET1
   D:008CH         PUBLIC        TH0
   D:008DH         PUBLIC        TH1
+  C:02BAH         PUBLIC        _seg7encorder
   D:008AH         PUBLIC        TL0
   D:008BH         PUBLIC        TL1
   D:002CH         PUBLIC        tmp
-  C:0313H         PUBLIC        timer0
   B:0088H.4       PUBLIC        TR0
   B:0088H.6       PUBLIC        TR1
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  17:30:48  PAGE 4
-
-
+  D:002DH         PUBLIC        no_hit_t
   B:00A0H.3       PUBLIC        led_sel
-  D:002DH         PUBLIC        i
-  C:0397H         PUBLIC        init_sys
+  D:002FH         PUBLIC        i
+  C:03DCH         PUBLIC        init_sys
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/05/2018  09:05:42  PAGE 4
+
+
   D:00D0H         PUBLIC        PSW
-  C:02C8H         PUBLIC        tim2
+  C:039BH         PUBLIC        tim2
   D:0094H         PUBLIC        P0M0
   -------         PROC          INIT_SYS
-  C:0397H         LINE#         10
-  C:0397H         LINE#         11
-  C:0397H         LINE#         12
-  C:039AH         LINE#         13
-  C:039DH         LINE#         14
-  C:03A0H         LINE#         15
-  C:03A2H         LINE#         16
-  C:03A5H         LINE#         17
-  C:03A7H         LINE#         18
-  C:03A9H         LINE#         19
-  C:03ABH         LINE#         20
-  C:03ADH         LINE#         21
-  C:03AFH         LINE#         22
+  C:03DCH         LINE#         10
+  C:03DCH         LINE#         11
+  C:03DCH         LINE#         12
+  C:03DFH         LINE#         13
+  C:03E2H         LINE#         14
+  C:03E5H         LINE#         15
+  C:03E7H         LINE#         16
+  C:03EAH         LINE#         17
+  C:03ECH         LINE#         18
+  C:03EEH         LINE#         19
+  C:03F0H         LINE#         20
+  C:03F2H         LINE#         21
+  C:03F4H         LINE#         22
   -------         ENDPROC       INIT_SYS
   -------         PROC          INIT
-  C:03B0H         LINE#         23
-  C:03B0H         LINE#         24
-  C:03B0H         LINE#         25
-  C:03B3H         LINE#         26
-  C:03B6H         LINE#         27
-  C:03B9H         LINE#         28
-  C:03BBH         LINE#         29
-  C:03BDH         LINE#         30
-  C:03BFH         LINE#         31
-  C:03C1H         LINE#         32
-  C:03C3H         LINE#         33
+  C:0003H         LINE#         23
+  C:0003H         LINE#         24
+  C:0003H         LINE#         25
+  C:0006H         LINE#         26
+  C:0009H         LINE#         27
+  C:000CH         LINE#         28
+  C:000EH         LINE#         29
+  C:0010H         LINE#         30
+  C:0012H         LINE#         31
+  C:0014H         LINE#         32
+  C:0016H         LINE#         33
   -------         ENDPROC       INIT
   -------         PROC          MAIN
-  C:03C4H         LINE#         57
-  C:03C4H         LINE#         58
-  C:03C4H         LINE#         59
-  C:03C7H         LINE#         60
-  C:03CAH         LINE#         61
-  C:03CDH         LINE#         62
-  C:03D0H         LINE#         63
+  C:03F5H         LINE#         59
+  C:03F5H         LINE#         60
+  C:03F5H         LINE#         61
+  C:03F8H         LINE#         62
+  C:03FBH         LINE#         63
+  C:03FEH         LINE#         64
+  C:0401H         LINE#         65
   -------         ENDPROC       MAIN
   -------         PROC          GAMESCREEN
-  C:001EH         LINE#         66
-  C:001EH         LINE#         69
-  C:0022H         LINE#         70
-  C:0028H         LINE#         71
-  C:002EH         LINE#         72
-  C:0034H         LINE#         74
-  C:0037H         LINE#         76
-  C:0037H         LINE#         79
-  C:003AH         LINE#         80
-  C:0043H         LINE#         81
-  C:0045H         LINE#         82
-  C:004CH         LINE#         83
-  C:0054H         LINE#         84
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  17:30:48  PAGE 5
+  C:001EH         LINE#         68
+  C:001EH         LINE#         71
+  C:0022H         LINE#         72
+  C:0028H         LINE#         73
+  C:002EH         LINE#         74
+  C:0034H         LINE#         76
+  C:0037H         LINE#         78
+  C:0037H         LINE#         81
+  C:003AH         LINE#         82
+  C:0043H         LINE#         83
+  C:0045H         LINE#         84
+  C:004CH         LINE#         85
+  C:0054H         LINE#         86
+  C:005CH         LINE#         87
+  C:005EH         LINE#         88
+  C:0060H         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/05/2018  09:05:42  PAGE 5
 
 
-  C:005CH         LINE#         85
-  C:005EH         LINE#         86
-  C:0060H         LINE#         87
-  C:0063H         LINE#         88
-  C:0066H         LINE#         89
+  C:0063H         LINE#         90
+  C:0066H         LINE#         91
   C:0066H         LINE#         93
-  C:0075H         LINE#         94
-  C:0079H         LINE#         95
-  C:0079H         LINE#         96
-  C:007CH         LINE#         97
-  C:008AH         LINE#         98
-  C:0098H         LINE#         99
-  C:009BH         LINE#         102
-  C:00A7H         LINE#         103
-  C:00B3H         LINE#         104
-  C:00B8H         LINE#         105
-  C:00BDH         LINE#         106
-  C:00C0H         LINE#         107
-  C:00C0H         LINE#         108
-  C:00C3H         LINE#         109
-  C:00C6H         LINE#         110
+  C:0068H         LINE#         94
+  C:0070H         LINE#         98
+  C:007DH         LINE#         99
+  C:0084H         LINE#         100
+  C:0084H         LINE#         101
+  C:0087H         LINE#         102
+  C:0095H         LINE#         103
+  C:00A3H         LINE#         104
+  C:00A6H         LINE#         107
+  C:00B2H         LINE#         108
+  C:00BEH         LINE#         109
+  C:00C3H         LINE#         110
+  C:00C8H         LINE#         111
+  C:00CBH         LINE#         112
   C:00CBH         LINE#         113
-  C:00CFH         LINE#         114
-  C:00D5H         LINE#         115
-  C:00DDH         LINE#         116
-  C:00E1H         LINE#         117
-  C:00E4H         LINE#         118
-  C:00E7H         LINE#         119
-  C:00E7H         LINE#         120
-  C:00E9H         LINE#         121
-  C:00F1H         LINE#         122
-  C:00F1H         LINE#         124
-  C:00F1H         LINE#         125
-  C:00F4H         LINE#         126
-  C:00F4H         LINE#         127
-  C:00F4H         LINE#         128
+  C:00CEH         LINE#         114
+  C:00D1H         LINE#         115
+  C:00D6H         LINE#         118
+  C:00DAH         LINE#         119
+  C:00E2H         LINE#         120
+  C:00EAH         LINE#         121
+  C:00F2H         LINE#         122
+  C:00F6H         LINE#         123
+  C:00FCH         LINE#         124
+  C:00FEH         LINE#         125
+  C:0101H         LINE#         126
+  C:0101H         LINE#         127
+  C:0101H         LINE#         128
+  C:0101H         LINE#         129
+  C:0103H         LINE#         130
+  C:010BH         LINE#         131
+  C:010BH         LINE#         132
+  C:010CH         LINE#         133
+  C:010CH         LINE#         134
+  C:010FH         LINE#         135
+  C:010FH         LINE#         136
+  C:010FH         LINE#         137
   -------         ENDPROC       GAMESCREEN
   -------         PROC          GAMEOVER
-  C:020CH         LINE#         130
-  C:020CH         LINE#         131
-  C:020FH         LINE#         132
-  C:021CH         LINE#         133
-  C:0236H         LINE#         134
-  C:0243H         LINE#         135
-  C:0246H         LINE#         136
-  C:0253H         LINE#         137
-  C:026DH         LINE#         138
-  C:027AH         LINE#         140
+  C:0227H         LINE#         139
+  C:0227H         LINE#         140
+  C:0236H         LINE#         141
+  C:0245H         LINE#         142
+  C:0248H         LINE#         143
+  C:0258H         LINE#         144
+  C:0261H         LINE#         145
+  C:0275H         LINE#         146
+  C:0278H         LINE#         147
+  C:0288H         LINE#         148
+  C:0291H         LINE#         149
+  C:02A5H         LINE#         150
   -------         ENDPROC       GAMEOVER
-  -------         PROC          TIMER0
-  C:0313H         LINE#         142
-  C:0330H         LINE#         143
-  C:0333H         LINE#         144
-  C:0336H         LINE#         145
-  C:0339H         LINE#         146
-  C:033BH         LINE#         147
-  -------         ENDPROC       TIMER0
-BL51 BANKED LINKER/LOCATER V6.22                                                      09/04/2018  17:30:48  PAGE 6
-
-
   -------         PROC          TIM2
-  C:02C8H         LINE#         149
-  C:02E5H         LINE#         151
-  C:02E8H         LINE#         152
-  C:02EBH         LINE#         153
-  C:02EEH         LINE#         154
-  C:02F0H         LINE#         155
-  C:02F8H         LINE#         156
+  C:039BH         LINE#         159
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/05/2018  09:05:42  PAGE 6
+
+
+  C:03B8H         LINE#         161
+  C:03BBH         LINE#         162
+  C:03BEH         LINE#         163
+  C:03C1H         LINE#         164
   -------         ENDPROC       TIM2
+  -------         PROC          L?0051
+  -------         ENDPROC       L?0051
+  -------         PROC          _SEG7ENCORDER
+  D:0006H         SYMBOL        num
+  C:02BAH         LINE#         170
+  C:02BAH         LINE#         171
+  C:02E8H         LINE#         172
+  C:02EBH         LINE#         173
+  C:02EEH         LINE#         174
+  C:02F1H         LINE#         175
+  C:02F4H         LINE#         176
+  C:02F7H         LINE#         177
+  C:02FAH         LINE#         178
+  C:02FDH         LINE#         179
+  C:0300H         LINE#         180
+  C:0303H         LINE#         181
+  C:0306H         LINE#         182
+  C:0308H         LINE#         183
+  C:0308H         LINE#         184
+  -------         ENDPROC       _SEG7ENCORDER
   -------         ENDMOD        STC_GAME
 
   -------         MODULE        ?C?UIDIV
-  C:0181H         PUBLIC        ?C?UIDIV
+  C:019CH         PUBLIC        ?C?UIDIV
   -------         ENDMOD        ?C?UIDIV
 
   -------         MODULE        ?C?SIDIV
-  C:01D6H         PUBLIC        ?C?SIDIV
+  C:01F1H         PUBLIC        ?C?SIDIV
   -------         ENDMOD        ?C?SIDIV
 
   -------         MODULE        RAND
-  D:002EH         PUBLIC        ?SRAND?BYTE
-  C:027BH         PUBLIC        RAND
-  C:02BDH         PUBLIC        _SRAND
+  D:0030H         PUBLIC        ?SRAND?BYTE
+  C:0309H         PUBLIC        RAND
+  C:034BH         PUBLIC        _SRAND
   -------         ENDMOD        RAND
 
-Program Size: data=51.0 xdata=0 code=957
+Program Size: data=53.0 xdata=0 code=1023
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

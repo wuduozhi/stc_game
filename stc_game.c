@@ -38,6 +38,7 @@ sbit led_sel=P2^3;
 
 uint hit = 0;  //击中与否
 uint no_hit = 0;
+uint no_hit_t = 0;
 uchar led = 0x3f;  //初始六条命
 uchar gameState = 0; //游戏状态
 uchar flag = 0;  //数码管选择
@@ -51,6 +52,7 @@ uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  	//final 8-bit show
 uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};	
 void gameScreen();
 void gameOver();
+uchar seg7encorder(uint num);
 /**********************
 void main() main function
 ***********************/
@@ -85,8 +87,11 @@ void gameScreen(){
 	}else{
 		led_sel=1;
 		P0 = led;
-		flag = 0;
+		flag = -1;
 	}
+	
+	flag++;
+	count++;
 	
 
 	
@@ -111,16 +116,20 @@ void gameScreen(){
 					
 					//判断是否击中
 					if(show_b[7] != 0x00){
-						led = led>>1;
-						no_hit ++;
-						if(led == 0x00){
-							gameState = 1;
-							gameOver();
+							no_hit_t ++;
+							no_hit ++;
+							if(no_hit_t == 20){
+								no_hit_t = 0;
+								led = led>>1;
+								if(led == 0x00){
+									gameState = 1;
+									gameOver();
+								}
 						}
 					}else{
 						hit++;
 					}
-					
+					break;
 				default:
 					gameOver();
 		}
@@ -128,29 +137,48 @@ void gameScreen(){
 }
 
 void gameOver(){
+	hit = hit%1000;
+	no_hit = no_hit%1000;
 	show_f[0] = 0x76;
-	show_f[1] = hit/100;
-	show_f[2] = (hit%100)/10;
-	show_f[3] = hit%10;
-	show_f[4] = 0x37;
-	show_f[5] = no_hit/100;
-	show_f[6] = (no_hit%100)/10;
-	show_f[7] = no_hit%10;
-
+	show_f[1] = seg7encorder(hit/100);
+	show_f[2] = seg7encorder((hit%100)/10);
+	show_f[3] = seg7encorder(hit%10);
+	show_f[4] = 0x38;
+	show_f[5] = seg7encorder(no_hit/100);
+	show_f[6] = seg7encorder((no_hit%100)/10);
+	show_f[7] = seg7encorder(no_hit%10);
 }
-
+/*
 void timer0() interrupt 1{
 	TH0=(65535-1000)/256;     //重新装载定时器0的初始值，为了下一次定时器溢出准备
 	TL0=(65535-1000)%256;
 	gameScreen();
 	flag++;
 }
-
+*/
 void tim2() interrupt 3		
 {
 	TH1=(65536-925)/256;
 	TL1=(65536-925)%256;
 	gameScreen();
-	flag++;
-	count++;
+}
+
+/***********************
+FUNCTION: 		void seg7encorder()
+DESCRIPTION:	to translate a number into 7-segment code.
+************************/
+uchar seg7encorder(uint num){
+	switch(num){
+		case 0: return 0x3f;
+		case 1: return 0x06;
+		case 2: return 0x5b;
+		case 3: return 0x4f;
+		case 4: return 0x66;
+		case 5: return 0x6d;
+		case 6: return 0x7d;
+		case 7: return 0x07;
+		case 8: return 0x7f;
+		case 9: return 0x6f;
+		default: return 0xff;
+	}
 }
