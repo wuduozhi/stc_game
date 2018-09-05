@@ -1,58 +1,21 @@
 #include <STC15F2K60S2.h>
 #include <stdlib.h>
+#include "music.h"
+#include "variable.h"
+#include "function.h"
 #define uint unsigned int
 #define uchar unsigned char
 
-/**********************
-函数名称：void init_sys()
-功能描述：系统初始化，功能是配置IO口
-***********************/
-void init_sys()
-{
-	P0M0=0xff;
-	P0M1=0x00;
-	P2M0=0x08;
-	P2M1=0x00;
-	P3M0=0x10;
-	P3M1=0x00;
-	P4M0=0x00;
-	P4M1=0x00;
-	P5M0=0x00;
-	P5M1=0x00;
-}
-void init()						  
-{
-	TMOD=0x11;
-	TH0=0xD8;
-	TL0=0xEF;
-	EA=1;
-	ET0=1;
-	TR0=0;
-	ET1=1;
-	TR1=1;
-}
-sbit KEY1 = P3^2;
-sbit KEY2 = P3^3;
-sbit KEY3 = P1^7;
-sbit led_sel=P2^3;
-
-uint hit = 0;  //击中与否
-uint no_hit = 0;
-uint no_hit_t = 0;
-uchar led = 0x3f;  //初始六条命
-uchar gameState = 0; //游戏状态
-uchar flag = 0;  //数码管选择
-uchar i = 0;
-uchar tmp = 0;
-uchar next = 0;  
-uint count = 0;         //数码管移动计数
-uint shift_time = 530;  //数码管移动时间
-uchar show_b[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  	//barrier 8-bit segments show
-uchar show_f[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  	//final 8-bit show
-uchar weixuan[]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07};	
+//函数列表
 void gameScreen();
 void gameOver();
 uchar seg7encorder(uint num);
+void playmusic();
+void delay(unsigned int xms);
+uchar quyin(uchar tem);
+void init_sys();
+void init();
+
 /**********************
 void main() main function
 ***********************/
@@ -61,7 +24,7 @@ void main()
 	init_sys();
 	init();
 	P0=0x00;
-	gameScreen();
+	playmusic();
 	while(1);
 }
 
@@ -135,9 +98,15 @@ void gameScreen(){
 		}
 	}
 }
-
+/**********************
+函数名称：gameOver()
+功能描述：游戏结束，显示击中与未击中次数
+入口参数：无
+出口参数：无
+备注：
+***********************/
 void gameOver(){
-	hit = hit%1000-7;  //减去移动前多算的七次
+	hit = (hit%1000)-7;  //减去移动前多算的七次
 	no_hit = no_hit%1000;
 	show_f[0] = 0x76;
 	show_f[1] = seg7encorder(hit/100);
@@ -148,14 +117,28 @@ void gameOver(){
 	show_f[6] = seg7encorder((no_hit%100)/10);
 	show_f[7] = seg7encorder(no_hit%10);
 }
-/*
-void timer0() interrupt 1{
-	TH0=(65535-1000)/256;     //重新装载定时器0的初始值，为了下一次定时器溢出准备
-	TL0=(65535-1000)%256;
-	gameScreen();
-	flag++;
+
+/**********************
+函数名称：void tim1() interrupt 1
+功能描述：定时器0中断处理，重新装值，并把beep值取反，产生方波
+入口参数：无
+出口参数：无
+备注：
+***********************/
+void tim1() interrupt 1						//计时器控制频率
+{
+	TH0=timeh;
+	TL0=timel;
+	beep=~beep;
 }
-*/
+
+/**********************
+函数名称：void tim2() interrupt 3
+功能描述：定时器1中断处理,点亮led和数码管
+入口参数：无
+出口参数：无
+备注：
+***********************/
 void tim2() interrupt 3		
 {
 	TH1=(65536-925)/256;
@@ -163,22 +146,46 @@ void tim2() interrupt 3
 	gameScreen();
 }
 
-/***********************
-FUNCTION: 		void seg7encorder()
-DESCRIPTION:	to translate a number into 7-segment code.
-************************/
-uchar seg7encorder(uint num){
-	switch(num){
-		case 0: return 0x3f;
-		case 1: return 0x06;
-		case 2: return 0x5b;
-		case 3: return 0x4f;
-		case 4: return 0x66;
-		case 5: return 0x6d;
-		case 6: return 0x7d;
-		case 7: return 0x07;
-		case 8: return 0x7f;
-		case 9: return 0x6f;
-		default: return 0xff;
-	}
+/**********************
+函数名称：void playmusic()
+功能描述：播放音乐
+入口参数：无
+出口参数：无
+备注：
+
+***********************/
+void playmusic()
+{
+	uchar p,m,tem;   //m为节拍   
+	uchar i=0;    
+	while(1)   
+	{   
+		p=music[i];   	 //如果碰到结束符,延时1秒,回到开始再来一遍 
+		if(p==0x00)
+		{
+			i=0;
+			delay(1000);
+		}        
+		else if(p==0xff)   //若碰到休止符,延时100ms,继续取下一音符
+		{
+			i=i+2;
+			delay(100);
+			TR0=0;
+		}      
+		else			   //正常情况下取音符和节拍 
+		{
+			tem=quyin(music[i]);		//取出当前音符在quzi数组中的位置值
+			timeh=quzi[tem];			//把音符相应的计时器重装载值赋予timeh和timel
+			timel=quzi[tem+1];
+			i++;
+			TH0=timeh;					//把timeh和timel赋予计时器
+			TL0=timel;
+			m=music[i];					 //取得节拍
+			i++;
+		} 
+		TR0=1;                                             //开定时器1    
+		delay(m*180);             //等待节拍完成, 通过P3^4口输出音频    
+		TR0=0;                                            //关定时器1 
+			   
+   }
 }

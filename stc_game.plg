@@ -21,3 +21,70 @@ linking...
 Program Size: data=53.0 xdata=0 code=1029
 creating hex file from "stc_game"...
 "stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+linking...
+Program Size: data=53.0 xdata=0 code=1029
+creating hex file from "stc_game"...
+"stc_game" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+compiling music.c...
+music.c(3): error C202: 'P3': undefined identifier
+music.c(118): error C202: 'TR0': undefined identifier
+music.c(126): error C202: 'TH0': undefined identifier
+music.c(127): error C202: 'TL0': undefined identifier
+music.c(131): error C202: 'TR0': undefined identifier
+music.c(133): error C202: 'TR0': undefined identifier
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+compiling music.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TIMEL
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TIMEH
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  QUZI
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  MUSIC
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  PLAYMUSIC
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  _QUYIN
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  _DELAY
+    MODULE:  music.obj (MUSIC)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PLAYMUSIC?STC_GAME
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PLAYMUSIC?MUSIC
+Program Size: data=57.0 xdata=0 code=1651
+Target not created
+Rebuild target 'Target 1'
+assembling STARTUP.A51...
+compiling stc_game.c...
+compiling music.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  QUZI
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  MUSIC
+    MODULE:  music.obj (MUSIC)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?PLAYMUSIC?STC_GAME
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?MUSIC
+Program Size: data=55.0 xdata=0 code=1498
+Target not created
